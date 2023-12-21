@@ -54,7 +54,7 @@ client.create_prospect(email, additional_params)
 
 - Create List Membership
 ```ruby
-client.create_prospect(email, additional_params)
+client.create_list_membership(email, additional_params)
 
 ```
 
