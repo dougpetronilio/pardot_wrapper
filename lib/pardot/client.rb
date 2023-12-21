@@ -21,7 +21,7 @@ module Pardot
     end
 
     def list_custom_fields
-      perform_request { self.class.get('/customFields', headers: auth_headers) }
+      perform_request { self.class.get('/custom-fields', headers: auth_headers) }
     end
 
     def get_account
@@ -35,7 +35,7 @@ module Pardot
 
     def create_list_membership(prospect_id, list_id)
       query = { prospect_id: prospect_id, list_id: list_id }
-      perform_request { self.class.post('/listMemberships', body: query.to_json, headers: auth_headers) }
+      perform_request { self.class.post('/list-memberships', body: query.to_json, headers: auth_headers) }
     end
 
     private

@@ -19,7 +19,7 @@ RSpec.describe Pardot::Client do
   describe "#list_custom_fields" do
     it "makes a GET request to the custom fields endpoint" do
       client.list_custom_fields
-      expect(WebMock).to have_requested(:get, "https://pi.pardot.com/api/v5/objects/customFields")
+      expect(WebMock).to have_requested(:get, "https://pi.pardot.com/api/v5/objects/custom-fields")
         .with(headers: authorization)
     end
   end
@@ -43,7 +43,7 @@ RSpec.describe Pardot::Client do
   describe "#create_list_membership" do
     it "makes a POST request to create a list membership" do
       client.create_list_membership(123, 456)
-      expect(WebMock).to have_requested(:post, "https://pi.pardot.com/api/v5/objects/listMemberships")
+      expect(WebMock).to have_requested(:post, "https://pi.pardot.com/api/v5/objects/list-memberships")
         .with(body: hash_including({ prospect_id: 123, list_id: 456 }))
     end
   end
