@@ -7,6 +7,7 @@ module Pardot
       demo: 'https://pi.demo.pardot.com/api/v5/objects',
       login: 'https://login.salesforce.com'
     }
+    LIST_CUSTOM_FIELDS = "id,name,fieldId,updatedAt,type,isRecordMultipleResponses,salesforceId,isUseValues,isRequired"
 
     def initialize(access_token, refresh_token, client_id, client_secret, pardot_business_unit_id, environment = :production)
       @access_token = access_token
@@ -20,8 +21,8 @@ module Pardot
       self.class.base_uri BASE_URIS[environment]
     end
 
-    def list_custom_fields
-      perform_request { self.class.get('/custom-fields', headers: auth_headers) }
+    def list_custom_fields(fields=LIST_CUSTOM_FIELDS)
+      perform_request { self.class.get("/custom-fields?fields=#{fields}", headers: auth_headers) }
     end
 
     def get_account

@@ -19,7 +19,7 @@ RSpec.describe Pardot::Client do
   describe "#list_custom_fields" do
     it "makes a GET request to the custom fields endpoint" do
       client.list_custom_fields
-      expect(WebMock).to have_requested(:get, "https://pi.pardot.com/api/v5/objects/custom-fields")
+      expect(WebMock).to have_requested(:get, "https://pi.pardot.com/api/v5/objects/custom-fields?fields=id,name,fieldId,updatedAt,type,isRecordMultipleResponses,salesforceId,isUseValues,isRequired")
         .with(headers: authorization)
     end
   end
