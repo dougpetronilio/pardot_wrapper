@@ -29,7 +29,7 @@ gem install pardot_wrapper
 To start using PardotWrapper, configure the client with your OAuth credentials:
 
 ```ruby
-client = PardotWrapper.new(access_token, refresh_token, client_id, client_secret)
+client = PardotWrapper.new(access_token, refresh_token, client_id, client_secret, pardot_business_unit_id, :production)
 ```
 
 ## Available Methods
