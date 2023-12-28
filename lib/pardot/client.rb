@@ -9,6 +9,8 @@ module Pardot
     }
     LIST_CUSTOM_FIELDS = "id,name,fieldId,updatedAt,type,isRecordMultipleResponses,salesforceId,isUseValues,isRequired"
 
+    attr_reader :token_refreshed, :access_token
+
     def initialize(access_token, refresh_token, client_id, client_secret, pardot_business_unit_id, environment = :production)
       @access_token = access_token
       @refresh_token = refresh_token
@@ -34,7 +36,7 @@ module Pardot
       perform_request { self.class.post('/prospects', body: query.to_json, headers: auth_headers) }
     end
 
-    def create_list_membership(prospect_id, list_id)
+    def add_prospect_to_list_membership(prospect_id, list_id)
       query = { prospect_id: prospect_id, list_id: list_id }
       perform_request { self.class.post('/list-memberships', body: query.to_json, headers: auth_headers) }
     end
@@ -65,7 +67,7 @@ module Pardot
 
       if response.success?
         @access_token = response['access_token']
-        @token_refreshed = false
+        @token_refreshed = true
       else
         raise "Failed to refresh access token: #{response.body}"
       end
