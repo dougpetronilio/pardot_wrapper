@@ -44,7 +44,7 @@ RSpec.describe Pardot::Client do
     it "makes a POST request to create a list membership" do
       client.add_prospect_to_list_membership(123, 456)
       expect(WebMock).to have_requested(:post, "https://pi.pardot.com/api/v5/objects/list-memberships")
-        .with(body: hash_including({ prospect_id: 123, list_id: 456 }))
+        .with(body: hash_including({ prospectId: 123, listId: 456 }))
     end
   end
 

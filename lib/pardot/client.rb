@@ -32,13 +32,13 @@ module Pardot
     end
 
     def create_prospect(email, params = {})
-      query = params.merge({ email: email })
+      query = params.merge(email: email)
       perform_request { self.class.post('/prospects', body: query.to_json, headers: auth_headers) }
     end
 
-    def add_prospect_to_list_membership(prospect_id, list_id)
-      query = { prospect_id: prospect_id, list_id: list_id }
-      perform_request { self.class.post('/list-memberships', body: query.to_json, headers: auth_headers) }
+    def add_prospect_to_list_membership(prospect_id, list_id, opted_out)
+      query = { prospectId: prospect_id, listId: list_id, optedOut: opted_out }
+      perform_request { self.class.post('/list-memberships?fields=id', body: query.to_json, headers: auth_headers) }
     end
 
     private
@@ -80,8 +80,6 @@ module Pardot
         refresh_access_token
         response = yield
       end
-
-      raise "API request failed: #{response.body}" unless response.success?
 
       response
     end

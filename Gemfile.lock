@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    pardot_wrapper (0.1.4)
+    pardot_wrapper (0.1.6)
       httparty
 
 GEM
