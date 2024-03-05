@@ -45,6 +45,11 @@ module Pardot
       perform_request { self.class.get("/prospects?fields=id&email=#{email}", headers: auth_headers) }
     end
 
+    def update_prospect(prospect_id, params = {})
+      query = params
+      perform_request { self.class.patch("/prospects/#{prospect_id}", body: query.to_json, headers: auth_headers) }
+    end
+
     private
 
     def auth_headers
