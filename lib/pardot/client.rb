@@ -41,8 +41,8 @@ module Pardot
       perform_request { self.class.post('/list-memberships?fields=id', body: query.to_json, headers: auth_headers) }
     end
 
-    def get_prospect_by_email(email)
-      perform_request { self.class.get("/prospects?fields=id&email=#{email}", headers: auth_headers) }
+    def get_prospect_by_email(email, fields='id, createdAt', order_by='createdAt desc')
+      perform_request { self.class.get("/prospects?fields=#{fields}&email=#{email}&orderBy=#{order_by}", headers: auth_headers) }
     end
 
     def update_prospect(prospect_id, params = {})
